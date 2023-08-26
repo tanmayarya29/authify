@@ -1,16 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Product } from "../../components/productCard/ProductCard";
+import { defaultProduct } from "../../default/default";
 
-const initialState: Product = {
-  name: "",
-  image: "",
-  price: 0,
-  description: "",
-  category: "",
-  quantity: 0,
-  rating: 0,
-  reviews: [],
-};
+const initialState: Product = defaultProduct;
 
 const productSlice = createSlice({
   name: "product",
@@ -24,7 +16,6 @@ const productSlice = createSlice({
       state.category = action.payload.category;
       state.quantity = action.payload.quantity;
       state.rating = action.payload.rating;
-      state.reviews = action.payload.reviews;
     },
   },
 });

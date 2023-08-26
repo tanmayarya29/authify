@@ -1,55 +1,81 @@
-import React from 'react';
-import ProductDialog from './components/productDialog/ProductDialog';
-import ProductCard, { Product } from './components/productCard/ProductCard';
-import { useDispatch, useSelector } from 'react-redux';
-import { handleChange } from './features/productSlice';
+import { useState } from "react";
+import ProductCard, { Product } from "./components/productCard/ProductCard";
+import { Box, Button, Grid } from "@mui/material";
+import { dummyData } from "./constant/data.json";
+import ProductDialog from "./components/productDialog/ProductDialog";
+import { defaultProduct } from "./default/default";
 
-// const dummyData:Product = {
-//   name:"Lux Cozi",
-//   image:"",
-//   price:45
-// }
+const App = () => {
+  const [products, setProducts] = useState<Product[]>(dummyData);
+  const [open, setOpen] = useState(false);
+  const [mode, setMode] = useState<"add" | "edit">("edit");
+  const [selectedProduct, setSelectedProduct] =
+    useState<Product>(defaultProduct);
+  const handleEdit = (product: Product) => {
+    setProducts((prev) => {
+      const index = prev.findIndex((item) => item.id === product.id);
+      if (index === -1) return prev;
+      prev[index] = product;
+      return [...prev];
+    });
+  };
 
-const dummyData: Product[] = [
-  { name: 'Product 1', 
-  image: 'image-url-1',
-   price: 19.99,
-   description: 'most ccomfortable product',
-  category: 'innerware',
-  quantity: 2,
-  rating: 5,
-  reviews: ["good product"],
- },
+  const handleAdd = (product: Product) => {
+    setProducts((prev) => [...prev, { ...product, id: prev.length + 1 }]);
+  };
 
-  { name: 'Product 2',
-   image: 'image-url-2', 
-   price: 29.99,
-   description: 'most ccomfortable product',
-  category: 'innerware',
-  quantity: 2,
-  rating: 5,
-  reviews: ["good product"],
-   }
-];
+  const handleDelete = (product: Product) => {
+    setProducts((prev) => {
+      prev = prev.filter((item) => item.id !== product.id);
+      return [...prev];
+    });
+  };
 
+  const productCardProps = {
+    handleDelete,
+    setOpen,
+    setMode,
+    setSelectedProduct,
+  };
 
-
-const App: React.FC = () => {
-  const storeData = useSelector((state:any)=>state.product);
-  console.log(storeData);
-  const dispatch = useDispatch();
+  const dialogProps = {
+    open,
+    setOpen,
+    handleEdit,
+    handleAdd,
+    mode,
+  };
 
   return (
-    <div>
-
-      <h1
-         onClick={()=>dispatch(handleChange({...dummyData[0]}))}
-      >Product Management</h1>
-
-      
-      <ProductDialog />
-      {dummyData.map(item=><ProductCard {...item}/>)}
-    </div>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        width: "100%",
+        gap: 2,
+      }}
+    >
+      <h1>Products</h1>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => {
+          setOpen(true);
+          setMode("add");
+        }}
+      >
+        Add Product
+      </Button>
+      <Grid container spacing={2}>
+        {products.map((item) => (
+          <Grid key={item.id} item xs={4}>
+            <ProductCard product={item} {...productCardProps} />
+          </Grid>
+        ))}
+      </Grid>
+      <ProductDialog product={selectedProduct} {...dialogProps} />
+    </Box>
   );
 };
 

@@ -1,53 +1,100 @@
-import React, { useState } from 'react';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import Button from '@mui/material/Button';
+import { Dialog, DialogActions, DialogContent, TextField } from "@mui/material";
+import { Product } from "../productCard/ProductCard";
+import { useState } from "react";
+import { defaultProduct } from "../../default/default";
 
-
- export interface Product {
-  name: string;
-  image: string;
-  price: number;
-  description: string;
-  category: string,
-  quantity: number,
-  rating: number,
-  reviews:[string],
+interface Iprops {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  handleEdit: (product: Product) => void;
+  product: Product;
+  mode: "add" | "edit";
+  handleAdd: (product: Product) => void;
 }
 
-const ProductDialog: React.FC = () => {
-  const [open, setOpen] = useState(false);
+const ProductDialog = (props: Iprops) => {
+  const { open, setOpen, product, handleEdit, mode, handleAdd } = props;
+  const [productEditState, setProductEditState] = useState(
+    mode === "add" ? defaultProduct : product
+  );
 
-  const handleClose = () => {
-    setOpen(false);
+  const { name, image, price, description, category, quantity, rating } =
+    productEditState;
+
+  const handleChanges = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setProductEditState((prev) => ({ ...prev, [name]: value }));
   };
 
-  // const products: Product[] = [
-  //   { name: 'Product 1', image: 'image-url-1', price: 19.99 },
-  //   { name: 'Product 2', image: 'image-url-2', price: 29.99 },
-  //   // Add more products here
-  // ];
-
   return (
-    <div>
-      <Button variant="contained" color="primary" onClick={() => setOpen(true)}>
-        Add Product
-      </Button>
-      <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
-        <DialogContent>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
-            
-          
-          </div>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Close
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
+    <Dialog open={open} onClose={() => setOpen(false)}>
+
+     
+      
+      <DialogContent>
+        <TextField
+          name="name"
+          label="Name"
+          value={name}
+          onChange={handleChanges}
+        />
+        <TextField
+          name="image"
+          label="Image"
+          value={image}
+          onChange={handleChanges}
+        />
+        <TextField
+          name="price"
+          label="Price"
+          value={price}
+          onChange={handleChanges}
+        />
+        <TextField
+          name="description"
+          label="Description"
+          value={description}
+          onChange={handleChanges}
+        />
+ 
+        T
+
+        <TextField
+          name="category"
+          label="Category"
+          value={category}
+          onChange={handleChanges}
+        />
+        <TextField
+          name="quantity"
+          label="Quantity"
+          value={quantity}
+          onChange={handleChanges}
+        />
+        <TextField
+          name="rating"
+          label="Rating"
+          value={rating}
+          onChange={handleChanges}
+        />
+      </DialogContent>
+      <DialogActions>
+        <button onClick={() => setOpen(false)}>Cancel</button>
+        <button
+          onClick={() => {
+            setOpen(false);
+            if (mode === "add") {
+              handleAdd(productEditState);
+            }
+            if (mode === "edit") {
+              handleEdit(productEditState);
+            }
+          }}
+        >
+          Save
+        </button>
+      </DialogActions>
+    </Dialog>
   );
 };
 

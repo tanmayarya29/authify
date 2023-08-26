@@ -1,0 +1,25 @@
+{
+  "dummyData": [
+    {
+      "id": 1,
+      "name": "Product 1",
+      "image": "image-url-1",
+      "price": 19.99,
+      "description": "most ccomfortable product",
+      "category": "innerware",
+      "quantity": 2,
+      "rating": 5
+    },
+
+    {
+      "id": 2,
+      "name": "Product 2",
+      "image": "image-url-2",
+      "price": 29.99,
+      "description": "most ccomfortable product",
+      "category": "innerware",
+      "quantity": 2,
+      "rating": 5
+    }
+  ]
+}
