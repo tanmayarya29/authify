@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Product } from "../../components/productCard/ProductCard";
 import { defaultProduct } from "../../default/default";
+import { Product } from "../../types/types";
 
 const initialState: Product = defaultProduct;
 
