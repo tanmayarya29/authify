@@ -3,17 +3,7 @@ import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-
-export interface Product {
-  id: number;
-  name: string;
-  image: string;
-  price: number;
-  description: string;
-  category: string;
-  quantity: number;
-  rating: number;
-}
+import { Product } from "../../types/types";
 
 interface Iprops {
   product: Product;
@@ -54,9 +44,9 @@ const ProductCard = (props: Iprops) => {
           <Button
             color="primary"
             onClick={() => {
-              setOpen(true);
               setSelectedProduct(product);
               setMode("edit");
+              setOpen(true);
             }}
           >
             Edit

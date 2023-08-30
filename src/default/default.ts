@@ -1,4 +1,4 @@
-import { Product } from "../components/productCard/ProductCard";
+import { Product, SignInUser, SignUpUser } from "../types/types";
 
 export const defaultProduct: Product = {
   id: 0,
@@ -9,4 +9,19 @@ export const defaultProduct: Product = {
   category: "",
   quantity: 0,
   rating: 4,
+};
+
+export const defaultSignUpUser: SignUpUser = {
+  first_name: "",
+  last_name: "",
+  email: "",
+  country_code: "+91",
+  phone_number: "",
+  role: "user",
+  password: "",
+};
+
+export const defaultSignInUser: SignInUser = {
+  email: "",
+  password: "",
 };

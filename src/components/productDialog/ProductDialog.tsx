@@ -1,7 +1,6 @@
 import { Dialog, DialogActions, DialogContent, TextField } from "@mui/material";
 import { Product } from "../productCard/ProductCard";
 import { useState } from "react";
-import { defaultProduct } from "../../default/default";
 
 interface Iprops {
   open: boolean;
@@ -14,10 +13,7 @@ interface Iprops {
 
 const ProductDialog = (props: Iprops) => {
   const { open, setOpen, product, handleEdit, mode, handleAdd } = props;
-  const [productEditState, setProductEditState] = useState(
-    mode === "add" ? defaultProduct : product
-  );
-
+  const [productEditState, setProductEditState] = useState(product);
   const { name, image, price, description, category, quantity, rating } =
     productEditState;
 
@@ -28,9 +24,6 @@ const ProductDialog = (props: Iprops) => {
 
   return (
     <Dialog open={open} onClose={() => setOpen(false)}>
-
-     
-      
       <DialogContent>
         <TextField
           name="name"
@@ -56,9 +49,6 @@ const ProductDialog = (props: Iprops) => {
           value={description}
           onChange={handleChanges}
         />
- 
-        T
-
         <TextField
           name="category"
           label="Category"
@@ -82,13 +72,13 @@ const ProductDialog = (props: Iprops) => {
         <button onClick={() => setOpen(false)}>Cancel</button>
         <button
           onClick={() => {
-            setOpen(false);
             if (mode === "add") {
               handleAdd(productEditState);
             }
             if (mode === "edit") {
               handleEdit(productEditState);
             }
+            setOpen(false);
           }}
         >
           Save
