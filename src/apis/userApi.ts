@@ -1,8 +1,7 @@
 import axios from "axios";
 import { SignUpUser } from "../types/types";
 
-// const URL = process.env.BACKEND_URL;
-const URL = "http://localhost:8800";
+const URL = process.env.BACKEND_URL;
 
 type credentials = {
   email: string;

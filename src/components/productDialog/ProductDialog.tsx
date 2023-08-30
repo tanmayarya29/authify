@@ -1,6 +1,7 @@
 import { Dialog, DialogActions, DialogContent, TextField } from "@mui/material";
-import { Product } from "../productCard/ProductCard";
+
 import { useState } from "react";
+import { Product } from "../../types/types";
 
 interface Iprops {
   open: boolean;
