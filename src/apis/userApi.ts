@@ -1,5 +1,7 @@
-import axios from "./axios";
+import axios from "axios";
 import { SignInUser, SignUpUser } from "../constant/types";
+
+const URL = process.env.BACKEND_URL;
 
 const userApi = {
   postLogin: async (user: SignInUser) => {
@@ -11,7 +13,7 @@ const userApi = {
           "access-token-" + user.email,
           res.data.accessToken
         );
-        return "success";
+        return res.data;
       })
       .catch((err) => {
         console.log(err);
@@ -23,11 +25,9 @@ const userApi = {
     axios
       .post(SIGNUP_URL, user)
       .then((res) => {
-        console.log(res);
-        return res;
+        return res.data;
       })
       .catch((err) => {
-        console.log(err);
         return err;
       });
   },
@@ -37,7 +37,7 @@ const userApi = {
       .post(LOGOUT_URL, { token: refreshToken })
       .then((res) => {
         localStorage.removeItem("access-token-" + email);
-        console.log(res);
+        return res.data;
       })
       .catch((err) => console.log(err));
   },
