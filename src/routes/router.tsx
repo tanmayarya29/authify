@@ -6,6 +6,10 @@ import NullPage from "../pages/NullPage";
 
 export const router = createBrowserRouter([
   {
+    path: "/",
+    element: <ProductListingPage />,
+  },
+  {
     path: "/sign-up",
     element: <RegistrationPage />,
   },
@@ -13,10 +17,7 @@ export const router = createBrowserRouter([
     path: "/log-in",
     element: <LoginPage />,
   },
-  {
-    path: "/",
-    element: <ProductListingPage />,
-  },
+
   {
     path: "*",
     element: <NullPage />,
