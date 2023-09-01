@@ -1,4 +1,4 @@
-import { Product, SignInUser, SignUpUser } from "../types/types";
+import { Product, SignInUser, SignUpUser } from "./types";
 
 export const defaultProduct: Product = {
   id: 0,

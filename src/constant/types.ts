@@ -1,4 +1,4 @@
-export interface Product {
+type Product = {
   id: number;
   name: string;
   image: string;
@@ -7,9 +7,9 @@ export interface Product {
   category: string;
   quantity: number;
   rating: number;
-}
+};
 
-export interface SignUpUser {
+type SignUpUser = {
   first_name: string;
   last_name: string;
   email: string;
@@ -17,9 +17,11 @@ export interface SignUpUser {
   phone_number: string;
   role: string;
   password: string;
-}
+};
 
-export interface SignInUser {
+type SignInUser = {
   email: string;
   password: string;
-}
+};
+
+export type { Product, SignInUser, SignUpUser };

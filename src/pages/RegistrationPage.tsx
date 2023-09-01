@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { SignUpUser } from "../types/types";
-import { defaultSignUpUser } from "../default/default";
+import { SignUpUser } from "../constant/types";
+import { defaultSignUpUser } from "../constant/default";
 import {
   Stack,
   TextField,

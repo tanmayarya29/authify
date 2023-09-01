@@ -3,7 +3,7 @@ import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Product } from "../../types/types";
+import { Product } from "../../constant/types";
 
 interface Iprops {
   product: Product;

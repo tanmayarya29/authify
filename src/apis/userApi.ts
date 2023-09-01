@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SignUpUser } from "../types/types";
+import { SignUpUser } from "../constant/types";
 
 const URL = process.env.BACKEND_URL;
 

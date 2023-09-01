@@ -1,7 +1,7 @@
 import { Button, Stack, TextField } from "@mui/material";
 import { useState } from "react";
-import { SignInUser } from "../types/types";
-import { defaultSignInUser } from "../default/default";
+import { SignInUser } from "../constant/types";
+import { defaultSignInUser } from "../constant/default";
 import userApi from "../apis/userApi";
 import { redirect } from "react-router-dom";
 
