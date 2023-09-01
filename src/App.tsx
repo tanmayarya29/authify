@@ -97,14 +97,9 @@
 
 import { RouterProvider } from "react-router-dom";
 import { router } from "./routes/router";
-import { Stack } from "@mui/material";
 
 const App = () => {
-  return (
-    <Stack direction="column" justifyContent="center" alignItems="center">
-      <RouterProvider router={router} />
-    </Stack>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default App;
