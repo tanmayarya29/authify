@@ -2,7 +2,7 @@ import { Button, Stack, TextField } from "@mui/material";
 import { useState } from "react";
 import { SignInUser } from "../constant/types";
 import { defaultSignInUser } from "../constant/default";
-import userApi from "../apis/userApi";
+import { postLogin } from "../apis/userApi";
 import { redirect } from "react-router-dom";
 
 const LoginPage = () => {
@@ -17,8 +17,7 @@ const LoginPage = () => {
   };
 
   const handleLogin = () => {
-    userApi
-      .postLogin(credentials)
+    postLogin(credentials)
       .then((res) => {
         console.log(res);
         redirect("/");

@@ -9,7 +9,7 @@ import {
   MenuItem,
   SelectChangeEvent,
 } from "@mui/material";
-import userApi from "../apis/userApi";
+import { postSignUp } from "../apis/userApi";
 
 const RegistrationPage = () => {
   const [user, setUser] = useState<SignUpUser>(defaultSignUpUser);
@@ -31,7 +31,7 @@ const RegistrationPage = () => {
   };
 
   const handleSignUp = async () => {
-    console.log(await userApi.postSignUp(user));
+    console.log(await postSignUp(user));
   };
 
   return (
