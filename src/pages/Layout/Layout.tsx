@@ -1,18 +1,18 @@
 import { Outlet } from "react-router-dom";
+import Header from "../../components/Header/Header";
+import { Stack } from "@mui/material";
 
 const Layout = () => {
   return (
-    <div
-      style={{
-        backgroundColor: "#eeeeee",
-        padding: "16px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
+    <Stack
+      direction="column"
+      alignItems="center"
+      gap={2}
+      justifyContent="center"
     >
+      <Header />
       <Outlet />
-    </div>
+    </Stack>
   );
 };
 
