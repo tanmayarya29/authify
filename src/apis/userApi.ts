@@ -1,13 +1,8 @@
 import axios from "axios";
-import { SignUpUser } from "../constant/types";
-
-type credentials = {
-  email: string;
-  password: string;
-};
+import { SignInUser, SignUpUser } from "../constant/types";
 
 const userApi = {
-  postLogin: async (user: credentials) => {
+  postLogin: async (user: SignInUser) => {
     const LOGIN_URL = URL + "/auth/login";
     axios
       .post(LOGIN_URL, { user })
