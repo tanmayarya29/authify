@@ -10,9 +10,12 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import { postSignUp } from "../apis/userApi";
+import { useNavigate } from "react-router-dom";
 
 const RegistrationPage = () => {
   const [user, setUser] = useState<SignUpUser>(defaultSignUpUser);
+
+  const navigate = useNavigate();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -30,8 +33,15 @@ const RegistrationPage = () => {
     }));
   };
 
-  const handleSignUp = async () => {
-    console.log(await postSignUp(user));
+  const handleSignUp = () => {
+    postSignUp(user)
+      .then((res) => {
+        console.log(res);
+        navigate("/login");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (

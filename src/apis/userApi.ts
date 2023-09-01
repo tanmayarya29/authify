@@ -3,37 +3,28 @@ import { SignInUser, SignUpUser } from "../constant/types";
 
 const URL = import.meta.env.VITE_BACKEND_URL;
 
-export const postLogin = async (user: SignInUser) => {
+export const postLogin = (user: SignInUser) => {
   const LOGIN_URL = URL + "/auth/login";
-  axios
-    .post(LOGIN_URL, { user })
-    .then((res) => {
-      localStorage.setItem("access-token-" + user.email, res.data.accessToken);
-      return res.data;
-    })
-    .catch((err) => {
-      console.log(err);
-      return err;
-    });
+  return axios.post(LOGIN_URL, { user });
 };
-export const postSignUp = async (user: SignUpUser) => {
+export const postSignUp = (user: SignUpUser) => {
   const SIGNUP_URL = URL + "/auth/signup";
-  axios
-    .post(SIGNUP_URL, user)
-    .then((res) => {
-      return res.data;
-    })
-    .catch((err) => {
-      return err;
-    });
+  return axios.post(SIGNUP_URL, user);
 };
-export const getLogOut = async (email: string, refreshToken: string) => {
+
+export const postLogOut = (email: string) => {
   const LOGOUT_URL = URL + "/auth/logout";
-  axios
-    .post(LOGOUT_URL, { token: refreshToken })
-    .then((res) => {
-      localStorage.removeItem("access-token-" + email);
-      return res.data;
-    })
-    .catch((err) => console.log(err));
+  return axios.post(LOGOUT_URL, { email: email });
+};
+export const postRegenerateAuthToken = (email: string) => {
+  const TOKEN_REGENERATION_URL = URL + "/auth/token";
+  return axios.post(TOKEN_REGENERATION_URL, { email: email });
+};
+
+// accessing protected route
+export const getProducts = (token: string) => {
+  const PRODUCT_URL = URL + "/products/";
+  return axios.get(PRODUCT_URL, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
 };

@@ -3,9 +3,11 @@ import { useState } from "react";
 import { SignInUser } from "../constant/types";
 import { defaultSignInUser } from "../constant/default";
 import { postLogin } from "../apis/userApi";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { getDecodedToken } from "../utils/utils";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const [credentials, setCredentials] = useState<SignInUser>(defaultSignInUser);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,8 +21,12 @@ const LoginPage = () => {
   const handleLogin = () => {
     postLogin(credentials)
       .then((res) => {
-        console.log(res);
-        redirect("/");
+        localStorage.setItem(
+          "access-token-" + credentials.email,
+          res.data.accessToken
+        );
+        console.log(getDecodedToken(credentials.email));
+        navigate("/");
       })
       .catch((err) => console.log(err));
   };

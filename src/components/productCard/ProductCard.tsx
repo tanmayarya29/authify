@@ -7,14 +7,17 @@ import { Product } from "../../constant/types";
 
 interface Iprops {
   product: Product;
-  handleDelete: (product: Product) => void;
-  setOpen: (open: boolean) => void;
-  setSelectedProduct: (product: Product) => void;
-  setMode: (mode: "add" | "edit") => void;
+  // handleDelete: (product: Product) => void;
+  // setOpen: (open: boolean) => void;
+  // setSelectedProduct: (product: Product) => void;
+  // setMode: (mode: "add" | "edit") => void;
 }
 
 const ProductCard = (props: Iprops) => {
-  const { product, handleDelete, setOpen, setSelectedProduct, setMode } = props;
+  const {
+    product,
+    // handleDelete, setOpen, setSelectedProduct, setMode
+  } = props;
   const { name, image, price, description, category, quantity, rating } =
     product;
 
@@ -43,19 +46,19 @@ const ProductCard = (props: Iprops) => {
         <CardActions>
           <Button
             color="primary"
-            onClick={() => {
-              setSelectedProduct(product);
-              setMode("edit");
-              setOpen(true);
-            }}
+            // onClick={() => {
+            //   setSelectedProduct(product);
+            //   setMode("edit");
+            //   setOpen(true);
+            // }}
           >
             Edit
           </Button>
           <Button
             color="secondary"
-            onClick={() => {
-              handleDelete(product);
-            }}
+            // onClick={() => {
+            //   handleDelete(product);
+            // }}
           >
             Delete
           </Button>
