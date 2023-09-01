@@ -1,5 +1,5 @@
 const NullPage = () => {
-  return <div>NullPage</div>;
+  return <div>404 Not Found!!!</div>;
 };
 
 export default NullPage;
