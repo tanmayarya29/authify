@@ -1,8 +1,7 @@
 import axios from "axios";
 import { SignInUser, SignUpUser } from "../constant/types";
 
-// const URL = process.env.BACKEND_URL;
-const URL = "https://authify-backend.vercel.app";
+const URL = import.meta.env.VITE_BACKEND_URL;
 
 export const postLogin = async (user: SignInUser) => {
   const LOGIN_URL = URL + "/auth/login";
