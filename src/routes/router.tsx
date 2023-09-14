@@ -4,6 +4,7 @@ import LoginPage from "../pages/LoginPage";
 import ProductListingPage from "../pages/ProductListingPage";
 import NullPage from "../pages/NullPage";
 import Layout from "../pages/Layout/Layout";
+import ProductAddOrEditPage from "../pages/ProductAddOrEditPage";
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,14 @@ export const router = createBrowserRouter([
       {
         path: "sign-in",
         element: <LoginPage />,
+      },
+      {
+        path: "add-product",
+        element: <ProductAddOrEditPage />,
+      },
+      {
+        path: "/edit-product/:id",
+        element: <ProductAddOrEditPage />,
       },
       {
         path: "*",

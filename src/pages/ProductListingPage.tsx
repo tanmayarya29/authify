@@ -2,11 +2,8 @@ import { Button, Stack } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Product } from "../constant/types";
-import {
-  getProducts,
-  postLogOut,
-  postRegenerateAuthToken,
-} from "../apis/userApi";
+import { postLogOut, postRegenerateAuthToken } from "../apis/userApi";
+import { getProducts } from "../apis/productApi";
 import { getToken } from "../utils/utils";
 import ProductCard from "../components/productCard/ProductCard";
 
@@ -55,6 +52,7 @@ const ProductListingPage = () => {
       <Button onClick={() => handleRegenerateToken(email)}>
         Regenerate token
       </Button>
+      <Button onClick={() => navigate("add-product")}>Add Product</Button>
       <Stack>
         {products?.map((product: Product) => {
           return <ProductCard product={product} />;

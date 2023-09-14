@@ -4,6 +4,8 @@ import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Product } from "../../constant/types";
+import { deleteProduct } from "../../apis/productApi";
+import { useNavigate } from "react-router-dom";
 
 interface Iprops {
   product: Product;
@@ -14,12 +16,17 @@ interface Iprops {
 }
 
 const ProductCard = (props: Iprops) => {
+  const navigate = useNavigate();
   const {
     product,
     // handleDelete, setOpen, setSelectedProduct, setMode
   } = props;
-  const { name, image, price, description, category, quantity, rating } =
+  const { _id, name, image, price, description, category, quantity, rating } =
     product;
+
+  const handleDelete = () => {
+    deleteProduct(`${_id}`);
+  };
 
   return (
     <>
@@ -46,20 +53,13 @@ const ProductCard = (props: Iprops) => {
         <CardActions>
           <Button
             color="primary"
-            // onClick={() => {
-            //   setSelectedProduct(product);
-            //   setMode("edit");
-            //   setOpen(true);
-            // }}
+            onClick={() => {
+              navigate(`edit-product/${_id}`);
+            }}
           >
             Edit
           </Button>
-          <Button
-            color="secondary"
-            // onClick={() => {
-            //   handleDelete(product);
-            // }}
-          >
+          <Button color="secondary" onClick={handleDelete}>
             Delete
           </Button>
         </CardActions>

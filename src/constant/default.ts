@@ -1,7 +1,7 @@
 import { Product, SignInUser, SignUpUser } from "./types";
 
 export const defaultProduct: Product = {
-  id: 0,
+  _id: "",
   name: "",
   image: "",
   price: 0,

@@ -20,11 +20,3 @@ export const postRegenerateAuthToken = (email: string) => {
   const TOKEN_REGENERATION_URL = URL + "/auth/token";
   return axios.post(TOKEN_REGENERATION_URL, { email: email });
 };
-
-// accessing protected route
-export const getProducts = (token: string) => {
-  const PRODUCT_URL = URL + "/products/";
-  return axios.get(PRODUCT_URL, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-};
